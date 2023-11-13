@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Images\AdminImagesController;
-use App\Http\Controllers\Images\ListImagesController;
-use App\Http\Controllers\Mails\ContactMeController;
-use App\Http\Controllers\Tags\CreateTagController;
 use App\Http\Controllers\Tags\ListTagsController;
-use App\Http\Controllers\Upload\SaveImagesController;
+use App\Http\Controllers\Tags\CreateTagController;
+use App\Http\Controllers\Mails\ContactMeController;
+use App\Http\Controllers\Images\ListImagesController;
+use App\Http\Controllers\Images\SaveImagesController;
+use App\Http\Controllers\Images\AdminImagesController;
+use App\Http\Controllers\Store\NewItemStoreController;
 
 Route::get('clear-cache', function () {
     Artisan::call('optimize:clear');
@@ -21,6 +22,9 @@ Route::group(['prefix' => 'store'], function () {
         Route::post('save-image', SaveImagesController::class)->name('storeAssetsSaveImages');
         Route::get('list', ListImagesController::class)->name('storeAssetsListImages');
         Route::post('admin', AdminImagesController::class)->name('storeAdminAssets');
+    });
+    Route::group(['prefix' => 'items'], function () {
+        Route::post('new', NewItemStoreController::class)->name('storeSaveNewItem');
     });
 });
 

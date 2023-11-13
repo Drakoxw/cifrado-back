@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Upload;
+namespace App\Http\Controllers\Images;
 
 use Illuminate\Http\Request;
 use App\Services\Validations;
@@ -21,8 +21,6 @@ class SaveImagesController extends ControllerExt
         try {
             $this->Authorization();
             Validations::SaveAssets($request);
-
-            $allowTypes = ['image/jpeg','image/png','image/gif'];
 
             $split = explode('.', $request->nameFile);
 

@@ -89,4 +89,16 @@ class Validations
 
         return $valid;
     }
+
+    public static function NewItemStore(Request $request)
+    {
+        $valid = self::makeValidator($request, [
+            'name'         => ['required', 'string'],
+            'description'  => ['required', 'string'],
+            'mainImage'    => ['required', 'string'],
+            'tags'         => ['required', 'array', 'min:1'],
+            'otherImages' => ['nullable', 'array'],
+        ]);
+        return $valid;
+    }
 }
