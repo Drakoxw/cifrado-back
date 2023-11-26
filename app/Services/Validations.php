@@ -68,7 +68,7 @@ class Validations
             'mimeType'  => ['nullable', 'string', Rule::when(fn ($input) => $input->action == 'update', ['required', 'string', 'min:5'])],
         ]);
 
-        if (!in_array($request->mimeType, ['image/jpeg','image/png','image/gif', 'image/webp'])) {
+        if ($request->action == 'update' && !in_array($request->mimeType, ['image/jpeg','image/png','image/gif', 'image/webp'])) {
             throw new Exception("Formato de imagen no permitido", 406);
         }
 
